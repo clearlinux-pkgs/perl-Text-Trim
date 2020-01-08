@@ -4,14 +4,15 @@
 #
 Name     : perl-Text-Trim
 Version  : 1.03
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJT/Text-Trim-1.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJT/Text-Trim-1.03.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtext-trim-perl/libtext-trim-perl_1.02-2.debian.tar.xz
-Summary  : remove leading and/or trailing whitespace from strings
+Summary  : 'remove leading and/or trailing whitespace from strings'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Text-Trim-license = %{version}-%{release}
+Requires: perl-Text-Trim-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -24,7 +25,6 @@ version 1.03
 Summary: dev components for the perl-Text-Trim package.
 Group: Development
 Provides: perl-Text-Trim-devel = %{version}-%{release}
-Requires: perl-Text-Trim = %{version}-%{release}
 Requires: perl-Text-Trim = %{version}-%{release}
 
 %description dev
@@ -39,12 +39,22 @@ Group: Default
 license components for the perl-Text-Trim package.
 
 
+%package perl
+Summary: perl components for the perl-Text-Trim package.
+Group: Default
+Requires: perl-Text-Trim = %{version}-%{release}
+
+%description perl
+perl components for the perl-Text-Trim package.
+
+
 %prep
 %setup -q -n Text-Trim-1.03
-cd ..
-%setup -q -T -D -n Text-Trim-1.03 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libtext-trim-perl_1.02-2.debian.tar.xz
+cd %{_builddir}/Text-Trim-1.03
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Text-Trim-1.03/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Text-Trim-1.03/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -69,7 +79,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Text-Trim
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Text-Trim/deblicense_copyright
+cp %{_builddir}/Text-Trim-1.03/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Text-Trim/cf906538fb52df1de1642df1a81365e7969b101e
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -82,7 +92,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Text/Trim.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -90,4 +99,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Text-Trim/deblicense_copyright
+/usr/share/package-licenses/perl-Text-Trim/cf906538fb52df1de1642df1a81365e7969b101e
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Text/Trim.pm
