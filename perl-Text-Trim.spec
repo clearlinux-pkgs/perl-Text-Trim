@@ -4,7 +4,7 @@
 #
 Name     : perl-Text-Trim
 Version  : 1.03
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJT/Text-Trim-1.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJT/Text-Trim-1.03.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtext-trim-perl/libtext-trim-perl_1.02-2.debian.tar.xz
@@ -79,7 +79,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Text-Trim
-cp %{_builddir}/Text-Trim-1.03/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Text-Trim/cf906538fb52df1de1642df1a81365e7969b101e
+cp %{_builddir}/Text-Trim-1.03/LICENSE %{buildroot}/usr/share/package-licenses/perl-Text-Trim/2953a676055661791ce3e4e64cdeea1742804467
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Text-Trim/cf906538fb52df1de1642df1a81365e7969b101e
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -99,8 +100,9 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Text-Trim/2953a676055661791ce3e4e64cdeea1742804467
 /usr/share/package-licenses/perl-Text-Trim/cf906538fb52df1de1642df1a81365e7969b101e
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Text/Trim.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Text/Trim.pm
