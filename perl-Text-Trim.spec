@@ -4,7 +4,7 @@
 #
 Name     : perl-Text-Trim
 Version  : 1.04
-Release  : 22
+Release  : 23
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJT/Text-Trim-1.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJT/Text-Trim-1.04.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtext-trim-perl/libtext-trim-perl_1.02-2.debian.tar.xz
@@ -105,4 +105,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/Text/Trim.pm
+/usr/lib/perl5/*
