@@ -7,7 +7,7 @@
 #
 Name     : perl-Text-Trim
 Version  : 1.04
-Release  : 29
+Release  : 30
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJT/Text-Trim-1.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJT/Text-Trim-1.04.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtext-trim-perl/libtext-trim-perl_1.02-2.debian.tar.xz
